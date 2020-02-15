@@ -1,0 +1,17 @@
+.type-list {
+    display: block;
+    padding: 40px;
+    background-color: aquamarine;
+    width: 980px;
+    margin: auto;
+}
+
+.type-list li {
+    list-style-type: none;
+    text-align: center;
+}
+
+.type-list h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
