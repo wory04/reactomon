@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+
+import ThemeContext from "../../context/ThemeContext";
+import AppTheme from "../../context/Colors";
 
 const PokemonImg = styled.img`
   margin-top: 20px;
@@ -19,7 +22,6 @@ const StyledPokemonCard = styled.div`
   height: 180px;
   text-align: center;
   display: inline-block;
-  background-color: #00b58c;
   margin: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -30,6 +32,9 @@ function PokemonCard(props) {
   const [id, setId] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
+  const theme = useContext(ThemeContext)[0];
+  const currentTheme = AppTheme[theme];
+
   useEffect(() => {
     axios.get(props.url).then(resp => {
       setId(resp.data.id);
@@ -39,7 +44,11 @@ function PokemonCard(props) {
 
   return (
     <Link to={`/pokemon/${id}`}>
-      <StyledPokemonCard className="pokemon-card">
+      <StyledPokemonCard
+        style={{
+          backgroundColor: `${currentTheme.PokemonCardBackgroundColor}`
+        }}
+      >
         <PokemonImg src={imageUrl} alt={props.name} />
         <PokemonName>{props.name}</PokemonName>
       </StyledPokemonCard>

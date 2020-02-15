@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
 import "./PokemonDetail.css";
+
+import ThemeContext from "../../context/ThemeContext";
+import AppTheme from "../../context/Colors";
 
 function PokemonDetail(props) {
   const [name, setName] = useState("");
@@ -11,6 +14,9 @@ function PokemonDetail(props) {
   const [height, setHeight] = useState(null);
   const [weight, setWeight] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
+
+  const theme = useContext(ThemeContext)[0];
+  const currentTheme = AppTheme[theme];
 
   useEffect(() => {
     axios
@@ -26,7 +32,12 @@ function PokemonDetail(props) {
   }, [props.match.params.id]);
 
   return (
-    <div className="pokemon-detail">
+    <div
+      className="pokemon-detail"
+      style={{
+        backgroundColor: `${currentTheme.ListBackgroundColor}`
+      }}
+    >
       <img src={imageUrl} alt={name} />
       <h2>{name}</h2>
       <p>Height: {height} dm</p>

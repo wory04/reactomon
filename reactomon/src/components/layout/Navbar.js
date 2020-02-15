@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import "./layout.css";
+import ThemeToggler from "../theme-toggler/ThemeToggler";
+import ThemeContext from "../../context/ThemeContext";
+import AppTheme from "../../context/Colors";
 
 const StyledLink = styled(Link)`
   color: #ffdc83;
@@ -24,13 +26,44 @@ const PokemonLogo = styled.img`
   margin: 20px auto;
 `;
 
+const StyledNavbar = styled.div`
+  display: block;
+  margin: auto;
+  text-align: center;
+  width: 960px;
+`;
+
 function Navbar() {
+  const theme = useContext(ThemeContext)[0];
+  const currentTheme = AppTheme[theme];
+
   return (
-    <div className="navbar">
+    <StyledNavbar
+      style={{
+        backgroundColor: `${currentTheme.BackgroundColor}`
+      }}
+    >
+      <ThemeToggler />
       <PokemonLogo src="/pokemon-logo.png" alt="Pokemon" />
-      <StyledLink to="/pokemons">Pokemons</StyledLink>
-      <StyledLink to="/types">Types</StyledLink>
-    </div>
+      <StyledLink
+        style={{
+          color: `${currentTheme.LinkColor}`,
+          backgroundColor: `${currentTheme.LinkBackgroundColor}`
+        }}
+        to="/pokemons"
+      >
+        Pokemons
+      </StyledLink>
+      <StyledLink
+        style={{
+          color: `${currentTheme.LinkColor}`,
+          backgroundColor: `${currentTheme.LinkBackgroundColor}`
+        }}
+        to="/types"
+      >
+        Types
+      </StyledLink>
+    </StyledNavbar>
   );
 }
 
