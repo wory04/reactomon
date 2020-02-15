@@ -27,7 +27,8 @@ function PokemonDetail(props) {
 
   return (
     <div className="pokemon-detail">
-      <img src={imageUrl} alt={name} />s<h2>{name}</h2>
+      <img src={imageUrl} alt={name} />
+      <h2>{name}</h2>
       <p>Height: {height} dm</p>
       <p>Weight: {weight} hg</p>
       <div className="abilities">
