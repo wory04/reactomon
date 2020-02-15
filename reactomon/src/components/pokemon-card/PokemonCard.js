@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { Link } from "react-router-dom";
-
+import PropTypes from 'prop-types';
 
 import "./PokemonCard.css";
 
@@ -30,6 +30,10 @@ class PokemonCard extends Component {
             </Link>
         )
     }
+}
+
+PokemonCard.propTypes = {
+    name: PropTypes.string.isRequired,
 }
 
 export default PokemonCard;

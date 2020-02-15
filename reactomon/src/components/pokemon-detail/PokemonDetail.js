@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import PropTypes from 'prop-types';
 
 import "./PokemonDetail.css";
 
-export default class PokemonDetail extends Component {
+class PokemonDetail extends Component {
     state = {
         name: null,
         abilities: [],
@@ -46,3 +47,13 @@ export default class PokemonDetail extends Component {
         )
     }
 }
+
+PokemonDetail.propTypes = {
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            id: PropTypes.number,
+        })
+    })
+}
+
+export default PokemonDetail;
