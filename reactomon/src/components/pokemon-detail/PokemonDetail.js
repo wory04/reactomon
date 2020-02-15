@@ -1,52 +1,45 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
 import "./PokemonDetail.css";
 
-class PokemonDetail extends Component {
-  state = {
-    name: null,
-    abilities: [],
-    types: [],
-    height: null,
-    weight: null,
-    imageUrl: null
-  };
+function PokemonDetail(props) {
+  const [name, setName] = useState("");
+  const [abilities, setAbilities] = useState([]);
+  const [types, setTypes] = useState([]);
+  const [height, setHeight] = useState(null);
+  const [weight, setWeight] = useState(null);
+  const [imageUrl, setImageUrl] = useState("");
 
-  componentDidMount() {
+  useEffect(() => {
     axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${this.props.match.params.id}/`)
-      .then(resp =>
-        this.setState({
-          name: resp.data.name,
-          abilities: resp.data.abilities.map(e => e.ability.name),
-          types: resp.data.types.map(e => e.type.name),
-          height: resp.data.height,
-          weight: resp.data.weight,
-          imageUrl: resp.data.sprites.front_default
-        })
-      );
-  }
+      .get(`https://pokeapi.co/api/v2/pokemon/${props.match.params.id}/`)
+      .then(resp => {
+        setName(resp.data.name);
+        setAbilities(resp.data.abilities.map(e => e.ability.name));
+        setTypes(resp.data.types.map(e => e.type.name));
+        setHeight(resp.data.height);
+        setWeight(resp.data.weight);
+        setImageUrl(resp.data.sprites.front_default);
+      });
+  }, [props.match.params.id]);
 
-  render() {
-    return (
-      <div className="pokemon-detail">
-        <img src={this.state.imageUrl} alt={this.state.name} />
-        <h2>{this.state.name}</h2>
-        <p>Height: {this.state.height} dm</p>
-        <p>Weight: {this.state.weight} hg</p>
-        <div className="abilities">
-          <h4>Abilities:</h4>
-          <span>{this.state.abilities.join(", ")}</span>
-        </div>
-        <div className="types">
-          <h4>Types:</h4>
-          <span>{this.state.types.join(", ")}</span>
-        </div>
+  return (
+    <div className="pokemon-detail">
+      <img src={imageUrl} alt={name} />s<h2>{name}</h2>
+      <p>Height: {height} dm</p>
+      <p>Weight: {weight} hg</p>
+      <div className="abilities">
+        <h4>Abilities:</h4>
+        <span>{abilities.join(", ")}</span>
       </div>
-    );
-  }
+      <div className="types">
+        <h4>Types:</h4>
+        <span>{types.join(", ")}</span>
+      </div>
+    </div>
+  );
 }
 
 PokemonDetail.propTypes = {
