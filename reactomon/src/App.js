@@ -7,18 +7,15 @@ import PokemonDetail from "./components/pokemon-detail/PokemonDetail";
 
 import "./App.css";
 
-
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="App">
           <Navbar />
-          <Route exact path={["/", "/pokemons"]} component={PokemonList}
-          />
-          <Route path="/types" component={TypeList}
-          />
-          <Route path="/pokemon/:id" component={PokemonDetail}/>
+          <Route exact path={["/", "/pokemons"]} component={PokemonList} />
+          <Route path="/types" component={TypeList} />
+          <Route path="/pokemon/:id" component={PokemonDetail} />
         </div>
       </Router>
     );

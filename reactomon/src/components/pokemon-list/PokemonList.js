@@ -2,30 +2,25 @@ import React, { Component } from "react";
 import axios from "axios";
 import PokemonCard from "../pokemon-card/PokemonCard";
 
-import "./PokemonList.css"
+import "./PokemonList.css";
 
 class PokemonList extends Component {
   state = {
-      pokemons: []
-  }
+    pokemons: []
+  };
 
   componentDidMount() {
-      axios
-        .get('https://pokeapi.co/api/v2/pokemon')
-        .then(resp => {
-            this.setState({ pokemons: resp.data.results });
-        })
+    axios.get("https://pokeapi.co/api/v2/pokemon").then(resp => {
+      this.setState({ pokemons: resp.data.results });
+    });
   }
 
   render() {
     return (
       <div className="pokemon-list">
-            {this.state.pokemons.map(pokemon =>
-                <PokemonCard
-                    name={pokemon.name}
-                    url={pokemon.url}
-                />
-            )}
+        {this.state.pokemons.map(pokemon => (
+          <PokemonCard name={pokemon.name} url={pokemon.url} />
+        ))}
       </div>
     );
   }
