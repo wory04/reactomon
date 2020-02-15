@@ -1,9 +1,10 @@
 .type-list {
   display: block;
   padding: 40px;
-  background-color: aquamarine;
-  width: 980px;
+  background-color: #d9f9d9;
+  width: 960px;
   margin: auto;
+  border-radius: 20px;
 }
 
 .type-list li {
