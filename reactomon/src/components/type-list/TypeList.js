@@ -28,7 +28,7 @@ function TypeList() {
       <h2>Pokemon types</h2>
       <ul>
         {pokemonTypes.map(pokemonType => (
-          <li>{pokemonType.name}</li>
+          <li key={pokemonType.name}>{pokemonType.name}</li>
         ))}
       </ul>
     </div>
