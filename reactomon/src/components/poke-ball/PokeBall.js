@@ -10,7 +10,7 @@ const PokeBallButton = styled.div`
   width: 40px;
   background-size: cover;
   position: absolute;
-  bottom: 25px;
+  top: 25px;
   right: 25px;
   background-image: url("/pokeball.png");
   &:hover {
