@@ -4,9 +4,10 @@
   width: 960px;
   margin: auto;
   border-radius: 20px;
+  position: relative;
 }
 
-.pokemon-detail img {
+.pokemon-detail img:first-of-type {
   padding: 20px;
   width: 20%;
 }

@@ -6,12 +6,18 @@ import TypeList from "./components/type-list/TypeList";
 import PokemonDetail from "./components/pokemon-detail/PokemonDetail";
 import ThemeContext from "./context/ThemeContext";
 import AppTheme from "./context/Colors";
+import CatchThemAllContext from "./context/CatchThemAllContext";
+import {
+  FetchAllPokemons,
+  FetchCatchedPokemons
+} from "./utility/FetchPokemons";
 
 import "./App.css";
 
 function App() {
   const [theme, setTheme] = useState("turquoise");
   const currentTheme = AppTheme[theme];
+  const [catchedPokemons, setCatchedPokemons] = useState([]);
 
   return (
     <ThemeContext.Provider value={[theme, setTheme]}>
@@ -23,14 +29,26 @@ function App() {
           minHeight: "100vh"
         }}
       >
-        <Router>
-          <div className="App">
-            <Navbar />
-            <Route exact path={["/", "/pokemons"]} component={PokemonList} />
-            <Route path="/types" component={TypeList} />
-            <Route path="/pokemon/:id" component={PokemonDetail} />
-          </div>
-        </Router>
+        <CatchThemAllContext.Provider
+          value={[catchedPokemons, setCatchedPokemons]}
+        >
+          <Router>
+            <div className="App">
+              <Navbar />
+              <Route exact path={["/", "/pokemons"]}>
+                <PokemonList FetchPokemons={FetchAllPokemons} isCatchable />
+              </Route>
+              <Route path="/types" component={TypeList} />
+              <Route path="/pokemon/:id" component={PokemonDetail} />
+              <Route path="/catched">
+                <PokemonList
+                  FetchPokemons={() => FetchCatchedPokemons(catchedPokemons)}
+                  isCatchable={false}
+                />
+              </Route>
+            </div>
+          </Router>
+        </CatchThemAllContext.Provider>
       </div>
     </ThemeContext.Provider>
   );

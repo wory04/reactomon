@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 import ThemeContext from "../../context/ThemeContext";
 import AppTheme from "../../context/Colors";
+import PokeBall from "../poke-ball/PokeBall";
 
 const PokemonImg = styled.img`
   margin-top: 20px;
@@ -28,6 +29,11 @@ const StyledPokemonCard = styled.div`
   transition: 0.3s;
 `;
 
+const PokemonCardWrapper = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
 function PokemonCard(props) {
   const [id, setId] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -43,22 +49,26 @@ function PokemonCard(props) {
   }, [props.url]);
 
   return (
-    <Link to={`/pokemon/${id}`}>
-      <StyledPokemonCard
-        style={{
-          backgroundColor: `${currentTheme.PokemonCardBackgroundColor}`
-        }}
-      >
-        <PokemonImg src={imageUrl} alt={props.name} />
-        <PokemonName>{props.name}</PokemonName>
-      </StyledPokemonCard>
-    </Link>
+    <PokemonCardWrapper>
+      <Link to={`/pokemon/${id}`}>
+        <StyledPokemonCard
+          style={{
+            backgroundColor: `${currentTheme.PokemonCardBackgroundColor}`
+          }}
+        >
+          <PokemonImg src={imageUrl} alt={props.name} />
+          <PokemonName>{props.name}</PokemonName>
+        </StyledPokemonCard>
+      </Link>
+      {props.isCatchable && <PokeBall name={props.name} url={props.url} />}
+    </PokemonCardWrapper>
   );
 }
 
 PokemonCard.propTypes = {
   name: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired
+  url: PropTypes.string.isRequired,
+  isCatchable: PropTypes.bool.isRequired
 };
 
 export default PokemonCard;

@@ -63,6 +63,15 @@ function Navbar() {
       >
         Types
       </StyledLink>
+      <StyledLink
+        style={{
+          color: `${currentTheme.LinkColor}`,
+          backgroundColor: `${currentTheme.LinkBackgroundColor}`
+        }}
+        to="/catched"
+      >
+        Catched
+      </StyledLink>
     </StyledNavbar>
   );
 }

@@ -6,8 +6,10 @@ import "./PokemonDetail.css";
 
 import ThemeContext from "../../context/ThemeContext";
 import AppTheme from "../../context/Colors";
+import PokeBall from "../poke-ball/PokeBall";
 
 function PokemonDetail(props) {
+  const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${props.match.params.id}/`;
   const [name, setName] = useState("");
   const [abilities, setAbilities] = useState([]);
   const [types, setTypes] = useState([]);
@@ -19,17 +21,15 @@ function PokemonDetail(props) {
   const currentTheme = AppTheme[theme];
 
   useEffect(() => {
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${props.match.params.id}/`)
-      .then(resp => {
-        setName(resp.data.name);
-        setAbilities(resp.data.abilities.map(e => e.ability.name));
-        setTypes(resp.data.types.map(e => e.type.name));
-        setHeight(resp.data.height);
-        setWeight(resp.data.weight);
-        setImageUrl(resp.data.sprites.front_default);
-      });
-  }, [props.match.params.id]);
+    axios.get(pokemonUrl).then(resp => {
+      setName(resp.data.name);
+      setAbilities(resp.data.abilities.map(e => e.ability.name));
+      setTypes(resp.data.types.map(e => e.type.name));
+      setHeight(resp.data.height);
+      setWeight(resp.data.weight);
+      setImageUrl(resp.data.sprites.front_default);
+    });
+  }, [pokemonUrl]);
 
   return (
     <div
@@ -50,6 +50,7 @@ function PokemonDetail(props) {
         <h4>Types:</h4>
         <span>{types.join(", ")}</span>
       </div>
+      <PokeBall name={name} url={pokemonUrl} />
     </div>
   );
 }
@@ -57,7 +58,7 @@ function PokemonDetail(props) {
 PokemonDetail.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.number
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     })
   })
 };
