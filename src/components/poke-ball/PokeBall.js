@@ -24,7 +24,7 @@ function PokeBall(props) {
   function CatchPokemon() {
     setCatchedPokemons([
       ...catchedPokemons,
-      { name: props.name, url: props.url }
+      { name: props.name, url: props.url },
     ]);
   }
 
@@ -35,7 +35,7 @@ function PokeBall(props) {
 
 PokeBall.propTypes = {
   name: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired
+  url: PropTypes.string.isRequired,
 };
 
 export default PokeBall;

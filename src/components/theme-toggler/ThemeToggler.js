@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import ThemeContext from "../../context/ThemeContext";
 
 const themeTogglerStyle = {
-  cursor: "pointer"
+  cursor: "pointer",
 };
 
 const ThemeToggler = () => {
