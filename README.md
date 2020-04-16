@@ -1,6 +1,17 @@
 # Reactomon
 
-CC Advanced 3rd SI week project with React
+## The project
+
+Basic frontend application in React using the [Pokemon API](https://pokeapi.co/) to practice functional components, hooks, styled components and Context API.
+
+## How to run
+
+Node.js has to be installed on your system to run the React application.
+
+To be able to run the React application you have to follow these steps:
+
+- After cloning the repository, run `npm install` to get all the necessary Node packages
+- Run `npm start` and the application will run
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
