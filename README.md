@@ -4,6 +4,8 @@
 
 Basic frontend application in React using the [Pokemon API](https://pokeapi.co/) to practice functional components, hooks, styled components and Context API.
 
+The project is deployed on [Netlify](https://reactomon.netlify.app/).
+
 ## How to run
 
 Node.js has to be installed on your system to run the React application.
