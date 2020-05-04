@@ -7,13 +7,13 @@ import ThemeContext from "../../context/ThemeContext";
 import AppTheme from "../../context/Colors";
 
 const StyledLink = styled(Link)`
-  color: #ffdc83;
+  color: ${(props) => props.theme.LinkColor};
   font-size: 18px;
   font-weight: 600;
   text-align: center;
   margin: 10px 20px 40px 20px;
   padding: 8px 16px;
-  background-color: #265fa5;
+  background-color: ${(props) => props.theme.LinkBackgroundColor};
   display: inline-block;
   border-radius: 8px;
   width: 150px;
@@ -31,6 +31,7 @@ const StyledNavbar = styled.div`
   margin: auto;
   text-align: center;
   width: 960px;
+  background-color: ${(props) => props.theme.BackgroundColor};
 `;
 
 function Navbar() {
@@ -38,38 +39,16 @@ function Navbar() {
   const currentTheme = AppTheme[theme];
 
   return (
-    <StyledNavbar
-      style={{
-        backgroundColor: `${currentTheme.BackgroundColor}`
-      }}
-    >
+    <StyledNavbar theme={currentTheme}>
       <ThemeToggler />
       <PokemonLogo src="/pokemon-logo.png" alt="Pokemon" />
-      <StyledLink
-        style={{
-          color: `${currentTheme.LinkColor}`,
-          backgroundColor: `${currentTheme.LinkBackgroundColor}`
-        }}
-        to="/pokemons"
-      >
+      <StyledLink theme={currentTheme} to="/pokemons">
         Pokemons
       </StyledLink>
-      <StyledLink
-        style={{
-          color: `${currentTheme.LinkColor}`,
-          backgroundColor: `${currentTheme.LinkBackgroundColor}`
-        }}
-        to="/types"
-      >
+      <StyledLink theme={currentTheme} to="/types">
         Types
       </StyledLink>
-      <StyledLink
-        style={{
-          color: `${currentTheme.LinkColor}`,
-          backgroundColor: `${currentTheme.LinkBackgroundColor}`
-        }}
-        to="/catched"
-      >
+      <StyledLink theme={currentTheme} to="/catched">
         Catched
       </StyledLink>
     </StyledNavbar>
