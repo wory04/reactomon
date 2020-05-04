@@ -1,24 +1,25 @@
-import React, { useContext } from "react";
-import ThemeContext from "../../context/ThemeContext";
+import React from "react";
+import styled from "styled-components";
 
-const themeTogglerStyle = {
-  cursor: "pointer",
-};
+const StyledThemeToggler = styled.div`
+  cursor: "pointer";
+`;
 
-const ThemeToggler = () => {
-  const [themeMode, setThemeMode] = useContext(ThemeContext);
+const StyledIcon = styled.span`
+  &:before {
+    content: '${(props) => props.theme.ThemeTogglerIcon}';
+  }
+`;
 
+const ThemeToggler = (props) => {
   return (
-    <div
-      style={themeTogglerStyle}
+    <StyledThemeToggler
       onClick={() => {
-        setThemeMode(themeMode === "turquoise" ? "crimson" : "turquoise");
+        props.changeTheme();
       }}
     >
-      <span title="switch theme">
-        {themeMode === "turquoise" ? "🌙" : "☀️"}
-      </span>
-    </div>
+      <StyledIcon></StyledIcon>
+    </StyledThemeToggler>
   );
 };
 

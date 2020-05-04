@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import ThemeContext from "../../context/ThemeContext";
-import AppTheme from "../../context/Colors";
 import PokeBall from "../poke-ball/PokeBall";
 
 const StyledPokemonDetail = styled.div`
@@ -14,6 +12,7 @@ const StyledPokemonDetail = styled.div`
   margin: auto;
   border-radius: 20px;
   position: relative;
+  background-color: ${(props) => props.theme.ListBackgroundColor};
   & img:first-of-type {
     padding: 20px;
     width: 20%;
@@ -29,9 +28,6 @@ function PokemonDetail(props) {
   const [weight, setWeight] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
 
-  const theme = useContext(ThemeContext)[0];
-  const currentTheme = AppTheme[theme];
-
   useEffect(() => {
     axios.get(pokemonUrl).then((resp) => {
       setName(resp.data.name);
@@ -44,12 +40,7 @@ function PokemonDetail(props) {
   }, [pokemonUrl]);
 
   return (
-    <StyledPokemonDetail
-      className="pokemon-detail"
-      style={{
-        backgroundColor: `${currentTheme.ListBackgroundColor}`,
-      }}
-    >
+    <StyledPokemonDetail>
       <img src={imageUrl} alt={name} />
       <h2>{name}</h2>
       <p>Height: {height} dm</p>

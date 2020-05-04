@@ -4,37 +4,42 @@ import Navbar from "./components/layout/Navbar";
 import PokemonList from "./components/pokemon-list/PokemonList";
 import TypeList from "./components/type-list/TypeList";
 import PokemonDetail from "./components/pokemon-detail/PokemonDetail";
-import ThemeContext from "./context/ThemeContext";
-import AppTheme from "./context/Colors";
+import styled, { ThemeProvider } from "styled-components";
+
 import CatchThemAllContext from "./context/CatchThemAllContext";
 import {
   FetchAllPokemons,
-  FetchCatchedPokemons
+  FetchCatchedPokemons,
 } from "./utility/FetchPokemons";
 
 import "./App.css";
+import AppTheme from "./context/Colors";
+
+const StyledContainer = styled.div`
+  background-color: ${(props) => props.theme.BackgroundColor};
+  height: 100%;
+  min-height: 100vh;
+`;
 
 function App() {
-  const [theme, setTheme] = useState("turquoise");
-  const currentTheme = AppTheme[theme];
   const [catchedPokemons, setCatchedPokemons] = useState([]);
+  const [currentTheme, setCurrentTheme] = useState("turquoise");
 
   return (
-    <ThemeContext.Provider value={[theme, setTheme]}>
-      <div
-        className="container"
-        style={{
-          backgroundColor: `${currentTheme.BackgroundColor}`,
-          height: "100%",
-          minHeight: "100vh"
-        }}
-      >
+    <ThemeProvider theme={AppTheme[currentTheme]}>
+      <StyledContainer>
         <CatchThemAllContext.Provider
           value={[catchedPokemons, setCatchedPokemons]}
         >
           <Router>
             <div className="App">
-              <Navbar />
+              <Navbar
+                changeTheme={() =>
+                  setCurrentTheme(
+                    currentTheme === "turquoise" ? "crimson" : "turquoise"
+                  )
+                }
+              />
               <Route exact path={["/", "/pokemons"]}>
                 <PokemonList FetchPokemons={FetchAllPokemons} isCatchable />
               </Route>
@@ -49,8 +54,8 @@ function App() {
             </div>
           </Router>
         </CatchThemAllContext.Provider>
-      </div>
-    </ThemeContext.Provider>
+      </StyledContainer>
+    </ThemeProvider>
   );
 }
 

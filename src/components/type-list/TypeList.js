@@ -1,9 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
-
-import ThemeContext from "../../context/ThemeContext";
-import AppTheme from "../../context/Colors";
 
 const StyledTypeList = styled.div`
   display: block;
@@ -11,6 +8,7 @@ const StyledTypeList = styled.div`
   width: 960px;
   margin: auto;
   border-radius: 20px;
+  background-color: ${(props) => props.theme.ListBackgroundColor};
   & li {
     list-style-type: none;
     text-align: center;
@@ -24,9 +22,6 @@ const StyledTypeList = styled.div`
 function TypeList() {
   const [pokemonTypes, setPokemonTypes] = useState([]);
 
-  const theme = useContext(ThemeContext)[0];
-  const currentTheme = AppTheme[theme];
-
   useEffect(() => {
     axios.get("https://pokeapi.co/api/v2/type").then((resp) => {
       setPokemonTypes(resp.data.results);
@@ -34,11 +29,7 @@ function TypeList() {
   }, []);
 
   return (
-    <StyledTypeList
-      style={{
-        backgroundColor: `${currentTheme.ListBackgroundColor}`,
-      }}
-    >
+    <StyledTypeList>
       <h2>Pokemon types</h2>
       <ul>
         {pokemonTypes.map((pokemonType) => (

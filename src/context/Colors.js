@@ -5,7 +5,8 @@ const AppTheme = {
     ListBackgroundColor: "#d9f9d9",
     LinkBackgroundColor: "#265fa5",
     LinkColor: "#ffdc83",
-    PokemonNameColor: "#2f4858"
+    PokemonNameColor: "#2f4858",
+    ThemeTogglerIcon: "🌞",
   },
 
   crimson: {
@@ -14,8 +15,9 @@ const AppTheme = {
     ListBackgroundColor: "#ffe4e1",
     LinkBackgroundColor: "#530004",
     LinkColor: "#f3eed9",
-    PokemonNameColor: "#574240"
-  }
+    PokemonNameColor: "#574240",
+    ThemeTogglerIcon: "🌙",
+  },
 };
 
 export default AppTheme;
