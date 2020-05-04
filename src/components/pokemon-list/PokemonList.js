@@ -1,11 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
 import PokemonCard from "../pokemon-card/PokemonCard";
 import ThemeContext from "../../context/ThemeContext";
 import AppTheme from "../../context/Colors";
 
-import "./PokemonList.css";
+const StyledPokemonList = styled.div`
+  display: block;
+  padding: 40px;
+  width: 960px;
+  margin: auto;
+  border-radius: 20px;
+`;
 
 function PokemonList(props) {
   const [pokemons, setPokemons] = useState([]);
@@ -14,19 +21,18 @@ function PokemonList(props) {
   const currentTheme = AppTheme[theme];
 
   useEffect(() => {
-    props.FetchPokemons().then(resp => {
+    props.FetchPokemons().then((resp) => {
       setPokemons(resp);
     });
   }, [props]);
 
   return (
-    <div
-      className="pokemon-list"
+    <StyledPokemonList
       style={{
-        backgroundColor: `${currentTheme.ListBackgroundColor}`
+        backgroundColor: `${currentTheme.ListBackgroundColor}`,
       }}
     >
-      {pokemons.map(pokemon => (
+      {pokemons.map((pokemon) => (
         <PokemonCard
           name={pokemon.name}
           url={pokemon.url}
@@ -34,13 +40,13 @@ function PokemonList(props) {
           key={pokemon.url}
         />
       ))}
-    </div>
+    </StyledPokemonList>
   );
 }
 
 PokemonList.propTypes = {
   FetchPokemons: PropTypes.func.isRequired,
-  isCatchable: PropTypes.bool.isRequired
+  isCatchable: PropTypes.bool.isRequired,
 };
 
 export default PokemonList;
