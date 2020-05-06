@@ -8,8 +8,8 @@ import PokemonDetail from "../pokemon-detail/PokemonDetail";
 import { CatchThemAllContext } from "../../context/CatchThemAllContext";
 
 import {
-  FetchAllPokemons,
-  FetchCatchedPokemons,
+  fetchAllPokemons,
+  fetchCatchedPokemons,
 } from "../../utility/FetchPokemons";
 
 function AppRouter(props) {
@@ -20,13 +20,13 @@ function AppRouter(props) {
       <div className="App">
         <Navbar changeTheme={props.changeTheme} />
         <Route exact path={["/", "/pokemons"]}>
-          <PokemonList FetchPokemons={FetchAllPokemons} isCatchable />
+          <PokemonList FetchPokemons={fetchAllPokemons} isCatchable />
         </Route>
         <Route path="/types" component={TypeList} />
         <Route path="/pokemon/:id" component={PokemonDetail} />
         <Route path="/catched">
           <PokemonList
-            FetchPokemons={() => FetchCatchedPokemons(catchedPokemons)}
+            FetchPokemons={() => fetchCatchedPokemons(catchedPokemons)}
             isCatchable={false}
           />
         </Route>
