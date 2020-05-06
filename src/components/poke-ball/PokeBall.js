@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import CatchThemAllContext from "../../context/CatchThemAllContext";
+import { CatchThemAllContext } from "../../context/CatchThemAllContext";
 
 const PokeBallButton = styled.div`
   cursor: pointer;
@@ -19,18 +19,13 @@ const PokeBallButton = styled.div`
 `;
 
 function PokeBall(props) {
-  const [catchedPokemons, setCatchedPokemons] = useContext(CatchThemAllContext);
+  const { addCatchedPokemon } = useContext(CatchThemAllContext);
 
   function CatchPokemon() {
-    setCatchedPokemons([
-      ...catchedPokemons,
-      { name: props.name, url: props.url },
-    ]);
+    addCatchedPokemon(props.name, props.url);
   }
 
-  return (
-    <PokeBallButton onClick={CatchPokemon} alt="pokeball"></PokeBallButton>
-  );
+  return <PokeBallButton onClick={CatchPokemon} alt="pokeball" />;
 }
 
 PokeBall.propTypes = {

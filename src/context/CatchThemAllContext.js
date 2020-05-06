@@ -1,5 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
-const CatchThemAllContext = React.createContext([[], () => {}]);
+export const CatchThemAllContext = React.createContext([[], () => {}]);
 
-export default CatchThemAllContext;
+export function CatchThemAllProvider(props) {
+  const [catchedPokemons, setCatchedPokemons] = useState([]);
+
+  const addCatchedPokemon = (name, url) =>
+    setCatchedPokemons([...catchedPokemons, { name, url }]);
+
+  return (
+    <CatchThemAllContext.Provider
+      value={{
+        catchedPokemons,
+        addCatchedPokemon,
+      }}
+    >
+      {props.children}
+    </CatchThemAllContext.Provider>
+  );
+}
