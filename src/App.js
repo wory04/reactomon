@@ -4,7 +4,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { CatchThemAllProvider } from "./context/CatchThemAllContext";
 import AppRouter from "./components/app-router/AppRouter";
 
-import AppTheme from "./context/Colors";
+import AppTheme, { colorThemes } from "./context/Colors";
 
 const StyledContainer = styled.div`
   background-color: ${(props) => props.theme.BackgroundColor};
@@ -13,7 +13,7 @@ const StyledContainer = styled.div`
 `;
 
 function App() {
-  const [currentTheme, setCurrentTheme] = useState("turquoise");
+  const [currentTheme, setCurrentTheme] = useState(colorThemes.turquoise);
 
   return (
     <ThemeProvider theme={AppTheme[currentTheme]}>
@@ -22,7 +22,9 @@ function App() {
           <AppRouter
             changeTheme={() =>
               setCurrentTheme(
-                currentTheme === "turquoise" ? "crimson" : "turquoise"
+                currentTheme === colorThemes.turquoise
+                  ? colorThemes.crimson
+                  : colorThemes.turquoise
               )
             }
           />

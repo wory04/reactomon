@@ -1,5 +1,7 @@
+export const colorThemes = { turquoise: "turquoise", crimson: "crimson" };
+
 const AppTheme = {
-  turquoise: {
+  [colorThemes.turquoise]: {
     BackgroundColor: "#00a3a8",
     PokemonCardBackgroundColor: "#00b58c",
     ListBackgroundColor: "#d9f9d9",
@@ -9,7 +11,7 @@ const AppTheme = {
     ThemeTogglerIcon: "🌞",
   },
 
-  crimson: {
+  [colorThemes.crimson]: {
     BackgroundColor: "#c25e5e",
     PokemonCardBackgroundColor: "#93656e",
     ListBackgroundColor: "#ffe4e1",
