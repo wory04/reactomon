@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import PropTypes from "prop-types";
+
 import Navbar from "../navbar/Navbar";
 import PokemonList from "../pokemon-list/PokemonList";
 import TypeList from "../type-list/TypeList";
 import PokemonDetail from "../pokemon-detail/PokemonDetail";
 
 import { CatchThemAllContext } from "../../context/CatchThemAllContext";
-
 import {
   fetchAllPokemons,
   fetchCatchedPokemons,
@@ -35,5 +36,9 @@ function AppRouter(props) {
     </Router>
   );
 }
+
+AppRouter.propTypes = {
+  changeTheme: PropTypes.func.isRequired,
+};
 
 export default AppRouter;

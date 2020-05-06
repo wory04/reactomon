@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const StyledThemeToggler = styled.div`
@@ -17,6 +18,10 @@ const ThemeToggler = (props) => {
       <StyledIcon />
     </StyledThemeToggler>
   );
+};
+
+ThemeToggler.propTypes = {
+  changeTheme: PropTypes.func.isRequired,
 };
 
 export default ThemeToggler;

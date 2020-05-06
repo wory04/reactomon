@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -44,5 +45,9 @@ function Navbar(props) {
     </StyledNavbar>
   );
 }
+
+Navbar.propTypes = {
+  changeTheme: PropTypes.func.isRequired,
+};
 
 export default Navbar;
