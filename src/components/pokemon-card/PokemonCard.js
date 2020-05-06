@@ -12,7 +12,7 @@ const PokemonImg = styled.img`
 `;
 
 const PokemonName = styled.h3`
-  color: #2f4858;
+  color: ${(props) => props.theme.PokemonNameColor};
   font-family: "Courier New", Courier, monospace;
 `;
 
