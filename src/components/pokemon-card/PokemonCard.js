@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import PokeBall from "../poke-ball/PokeBall";
+import { routes } from "../../utility/Globals";
 
 const PokemonImg = styled.img`
   margin-top: 20px;
@@ -46,7 +47,7 @@ function PokemonCard(props) {
 
   return (
     <PokemonCardWrapper>
-      <Link to={`/pokemon/${id}`}>
+      <Link to={`${routes.pokemon}/${id}`}>
         <StyledPokemonCard>
           <PokemonImg src={imageUrl} alt={props.name} />
           <PokemonName>{props.name}</PokemonName>

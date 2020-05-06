@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import ThemeToggler from "../theme-toggler/ThemeToggler";
+import { routes } from "../../utility/Globals";
 
 const StyledLink = styled(Link)`
   color: ${(props) => props.theme.LinkColor};
@@ -37,9 +38,9 @@ function Navbar(props) {
     <StyledNavbar>
       <ThemeToggler changeTheme={props.changeTheme} />
       <PokemonLogo src="/pokemon-logo.png" alt="Pokemon" />
-      <StyledLink to="/pokemons">Pokemons</StyledLink>
-      <StyledLink to="/types">Types</StyledLink>
-      <StyledLink to="/catched">Catched</StyledLink>
+      <StyledLink to={routes.pokemons}>Pokemons</StyledLink>
+      <StyledLink to={routes.types}>Types</StyledLink>
+      <StyledLink to={routes.catched}>Catched</StyledLink>
     </StyledNavbar>
   );
 }

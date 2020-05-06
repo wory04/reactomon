@@ -11,6 +11,7 @@ import {
   fetchAllPokemons,
   fetchCatchedPokemons,
 } from "../../utility/FetchPokemons";
+import { routes } from "../../utility/Globals";
 
 function AppRouter(props) {
   const { catchedPokemons } = useContext(CatchThemAllContext);
@@ -19,12 +20,12 @@ function AppRouter(props) {
     <Router>
       <div className="App">
         <Navbar changeTheme={props.changeTheme} />
-        <Route exact path={["/", "/pokemons"]}>
+        <Route exact path={["/", routes.pokemons]}>
           <PokemonList fetchPokemons={fetchAllPokemons} isCatchable />
         </Route>
-        <Route path="/types" component={TypeList} />
-        <Route path="/pokemon/:id" component={PokemonDetail} />
-        <Route path="/catched">
+        <Route path={routes.types} component={TypeList} />
+        <Route path={`${routes.pokemon}/:id`} component={PokemonDetail} />
+        <Route path={routes.catched}>
           <PokemonList
             fetchPokemons={() => fetchCatchedPokemons(catchedPokemons)}
             isCatchable={false}
