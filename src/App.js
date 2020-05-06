@@ -4,7 +4,6 @@ import styled, { ThemeProvider } from "styled-components";
 import { CatchThemAllProvider } from "./context/CatchThemAllContext";
 import AppRouter from "./components/app-router/AppRouter";
 
-import "./App.css";
 import AppTheme from "./context/Colors";
 
 const StyledContainer = styled.div`
