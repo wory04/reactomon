@@ -17,9 +17,7 @@ function PokemonList(props) {
   const [pokemons, setPokemons] = useState([]);
 
   useEffect(() => {
-    props.FetchPokemons().then((resp) => {
-      setPokemons(resp);
-    });
+    props.FetchPokemons().then(setPokemons);
   }, [props]);
 
   return (

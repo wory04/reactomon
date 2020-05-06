@@ -13,12 +13,8 @@ const StyledIcon = styled.span`
 
 const ThemeToggler = (props) => {
   return (
-    <StyledThemeToggler
-      onClick={() => {
-        props.changeTheme();
-      }}
-    >
-      <StyledIcon></StyledIcon>
+    <StyledThemeToggler onClick={props.changeTheme}>
+      <StyledIcon />
     </StyledThemeToggler>
   );
 };
