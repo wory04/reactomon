@@ -22,39 +22,36 @@ const StyledPokemonDetail = styled.div`
 
 function PokemonDetail(props) {
   const pokemonUrl = `${pokemonApiUrls.pokemons}/${props.match.params.id}/`;
-  const [name, setName] = useState("");
-  const [abilities, setAbilities] = useState([]);
-  const [types, setTypes] = useState([]);
-  const [height, setHeight] = useState(null);
-  const [weight, setWeight] = useState(null);
-  const [imageUrl, setImageUrl] = useState("");
+  const [detailedPokemon, setDetailedPokemon] = useState({});
 
   useEffect(() => {
     axios.get(pokemonUrl).then((resp) => {
-      setName(resp.data.name);
-      setAbilities(resp.data.abilities.map((e) => e.ability.name));
-      setTypes(resp.data.types.map((e) => e.type.name));
-      setHeight(resp.data.height);
-      setWeight(resp.data.weight);
-      setImageUrl(resp.data.sprites.front_default);
+      setDetailedPokemon({
+        name: resp.data.name,
+        abilities: resp.data.abilities.map((e) => e.ability.name),
+        types: resp.data.types.map((e) => e.type.name),
+        height: resp.data.height,
+        weight: resp.data.weight,
+        imageUrl: resp.data.sprites.front_default,
+      });
     });
   }, [pokemonUrl]);
 
   return (
     <StyledPokemonDetail>
-      <img src={imageUrl} alt={name} />
-      <h2>{name}</h2>
-      <p>Height: {height} dm</p>
-      <p>Weight: {weight} hg</p>
+      <img src={detailedPokemon.imageUrl} alt={detailedPokemon.name} />
+      <h2>{detailedPokemon.name}</h2>
+      <p>Height: {detailedPokemon.height} dm</p>
+      <p>Weight: {detailedPokemon.weight} hg</p>
       <div className="abilities">
         <h4>Abilities:</h4>
-        <span>{abilities.join(", ")}</span>
+        <span>{(detailedPokemon.abilities || []).join(", ")}</span>
       </div>
       <div className="types">
         <h4>Types:</h4>
-        <span>{types.join(", ")}</span>
+        <span>{(detailedPokemon.types || []).join(", ")}</span>
       </div>
-      <PokeBall name={name} url={pokemonUrl} />
+      <PokeBall name={detailedPokemon.name} url={pokemonUrl} />
     </StyledPokemonDetail>
   );
 }
