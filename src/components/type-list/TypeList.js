@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
+import { pokemonApiUrls } from "../../utility/Globals";
+
 const StyledTypeList = styled.div`
   display: block;
   padding: 40px;
@@ -23,7 +25,7 @@ function TypeList() {
   const [pokemonTypes, setPokemonTypes] = useState([]);
 
   useEffect(() => {
-    axios.get("https://pokeapi.co/api/v2/type").then((resp) => {
+    axios.get(pokemonApiUrls.pokemonTypes).then((resp) => {
       setPokemonTypes(resp.data.results);
     });
   }, []);

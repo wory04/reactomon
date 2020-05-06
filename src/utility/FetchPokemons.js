@@ -1,9 +1,10 @@
 import axios from "axios";
 
-export function fetchAllPokemons() {
-  return axios
-    .get("https://pokeapi.co/api/v2/pokemon")
-    .then((resp) => resp.data.results);
+import { pokemonApiUrls } from "./Globals";
+
+export async function fetchAllPokemons() {
+  const resp = await axios.get(pokemonApiUrls.pokemons);
+  return resp.data.results;
 }
 
 export function fetchCatchedPokemons(catchedPokemons) {

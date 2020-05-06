@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import PokeBall from "../poke-ball/PokeBall";
+import { pokemonApiUrls } from "../../utility/Globals";
 
 const StyledPokemonDetail = styled.div`
   text-align: center;
@@ -20,7 +21,7 @@ const StyledPokemonDetail = styled.div`
 `;
 
 function PokemonDetail(props) {
-  const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${props.match.params.id}/`;
+  const pokemonUrl = `${pokemonApiUrls.pokemons}/${props.match.params.id}/`;
   const [name, setName] = useState("");
   const [abilities, setAbilities] = useState([]);
   const [types, setTypes] = useState([]);
