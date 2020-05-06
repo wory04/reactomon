@@ -17,7 +17,7 @@ function PokemonList(props) {
   const [pokemons, setPokemons] = useState([]);
 
   useEffect(() => {
-    props.FetchPokemons().then(setPokemons);
+    props.fetchPokemons().then(setPokemons);
   }, [props]);
 
   return (
@@ -35,7 +35,7 @@ function PokemonList(props) {
 }
 
 PokemonList.propTypes = {
-  FetchPokemons: PropTypes.func.isRequired,
+  fetchPokemons: PropTypes.func.isRequired,
   isCatchable: PropTypes.bool.isRequired,
 };
 
