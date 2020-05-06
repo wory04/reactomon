@@ -27,7 +27,7 @@ function PokemonList(props) {
           name={pokemon.name}
           url={pokemon.url}
           isCatchable={props.isCatchable}
-          key={pokemon.url}
+          key={pokemon.key || pokemon.url}
         />
       ))}
     </StyledPokemonList>
